@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: organization
+  labels:
+    app: organization
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: organization
+  template:
+    metadata:
+      labels:
+        app: organization
+    spec:
+      containers:
+      - name: organization
+        image: mahesh2210/organization:1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGO_DATABASE
+          value: mydb
+        - name: MONGO_USERNAME
+          value: user
+        - name: MONGO_PASSWORD
+          value: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: organization
+  labels:
+    app: organization
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+  selector:
+    app: organization
