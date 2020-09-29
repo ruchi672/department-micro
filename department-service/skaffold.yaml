@@ -4,7 +4,7 @@ metadata:
   name: department-service
 build:
   artifacts:
-    - image: piomin/department
+    - image: ruchi672/departmentmicroservi
       jib: {}
   tagPolicy:
     gitCommit: {}
